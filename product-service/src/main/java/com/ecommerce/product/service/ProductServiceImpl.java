@@ -114,9 +114,11 @@ public class ProductServiceImpl implements ProductService{
      **/
     @Override
     public Page<ProductDto> filterProducts(Long categoryId, Double minPrice, Double maxPrice, int page, int size) {
+        Double min = minPrice != null ? minPrice : 0.0;
+        Double max = maxPrice != null ? maxPrice : Double.MAX_VALUE;
         Pageable pageable = PageRequest.of(page, size);
         Page<Product> productPage =
-                productRepo.advanceFilter(null, categoryId, minPrice, maxPrice, pageable);
+                productRepo.advanceFilter(null, categoryId, min, max, pageable);
         return productPage.map(productMapper::toDto);
     }
 

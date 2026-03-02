@@ -16,4 +16,6 @@ public class LoginResponseDto {
     private Long userId;
     private String email;
     private String name;
+    /** User role e.g. ROLE_ADMIN, ROLE_USER */
+    private String role;
 }
